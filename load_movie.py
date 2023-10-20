@@ -110,7 +110,7 @@ def add_movie(movie_id):
              SELECT (SELECT id FROM movies_movie WHERE title = %s) as movie_id, id as genre_id 
              FROM movies_genre 
              WHERE name IN %s'''
-    cur.execute(sql, (m['title'], tuple(genres),))
+    cur.execute(sql, (m['titl'], tuple(genres),))
 
 
     print(credits_list)
