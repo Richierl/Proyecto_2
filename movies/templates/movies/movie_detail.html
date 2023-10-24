@@ -5,11 +5,19 @@
         <title>{{movie.title}}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
         <link href="{% static 'movies/assets/css/tailwind.css' %}" rel="stylesheet">
+=======
+        <link href="{% static 'movies/assets/css/style.css' %}" rel="stylesheet">
+>>>>>>> 59204a196a74cf36b24f56af04bab945f98b84af
     </head>
     <body>
         <h1> {{ movie.title }} ({{ movie.release_date|date:"Y" }}) </h1>   
         <p> {{ movie.overview }} </p>
         <img src="{% static 'movies/assets/img'|add:movie.poster_path %}" alt="">
     </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 59204a196a74cf36b24f56af04bab945f98b84af
