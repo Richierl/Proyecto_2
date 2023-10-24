@@ -11,36 +11,38 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
 import os
+import environ
 
 env = environ.Env(
-        DEBUG=(bool, False)
+    # set casting, default value
+    DEBUG=(bool, False)
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
+# Take environment variables from .env file
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-%&_f5nxk8pqh0u=-qxhgxnimj+)0ypb8s^9z6^ma))6t@j5w=r'
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['richierl.ddns.net']
+ALLOWED_HOSTS = env.list('richierl.ddns.net','localhost') 
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'movies.apps.MoviesConfig',
+    'movies.apps.MoviesConfig', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -84,21 +86,8 @@ WSGI_APPLICATION = 'mymovies.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-#    'default': {
-#        "ENGINE": "django.db.backends.postgresql",
-#        "NAME": "django_bootstrap",
-#        "USER": "ubuntu",
-#        "PASSWORD": "thisissomeseucrepassword",
-#        "HOST": "127.0.0.1",
-#        "PORT": "5432",
-        'default': env.db(),
-
-        'extra': env.db_url(
-            'SQLITE_URL',
-            default='sqlite:////tmp/my-tmp-sqlite.db')
-
-}
-
+    "default": env.db(),
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-
 class Genre(models.Model):
     name = models.CharField(max_length=200)
 
@@ -46,6 +45,9 @@ class MovieCredit(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.movie.title}: {self.person.name} ({self.job.name})"
+
 
 class MovieReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -53,6 +55,3 @@ class MovieReview(models.Model):
     rating = models.PositiveSmallIntegerField(validators=[MinValueValidator(1),
                                                           MaxValueValidator(100)])
     review = models.TextField(blank=True)
-from django.db import models
-
-# Create your models here.
