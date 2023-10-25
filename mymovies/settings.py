@@ -37,6 +37,8 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env.list('richierl.ddns.net') 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
