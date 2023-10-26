@@ -19,10 +19,7 @@ def movie_detail(request, movie_id):
 def genre_movies(request, genre_id):
     genre = Genre.objects.get(pk=genre_id)
     movies = Movie.objects.filter(genres=genre)
-    context = {
-        'genre': genre,
-        'movies': movies,
-    }
+    context = {'genre': genre,'movies': movies,}
     return render(request, 'movies/genre_movies.html', context=context)
 
 def person_movies(request, person_id):
