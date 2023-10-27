@@ -1,43 +1,52 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-    <!--<link href="{% static 'movies/assets/css/tailwind-style.css' %}" rel="stylesheet">-->
     <title>Proyeto_2 MyMovies</title>
     <style>
-        .fuente{
-            font-family: "Arial Black", sans-serif;
+        .catalogo{
+            display: flex;
+            overflow-x: auto, hidden;
+            white-space: nowrap;
+        }
+        .text{
+            color: white;
+            font-display: "Arial", sans-serif;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .imagen{
+            width: 330px;
+            height: auto;
+        }
+        .espacio{
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px 
+        }
+        .tamaño{
+            transition: transform 0.3s;
+        }
+        .tamaño:hover{
+            transform: scale(1.1);
         }
     </style>
 </head>
-
-<body class="font-sans max-w-4xl mx-auto bg-stone-900 text-red-50 "
-    style="
-    background-image:url('https://img.freepik.com/foto-gratis/pared-textura-hormigon-azul-marino-solido_53876-124584.jpg?w=1060&t=st=1698397401~exp=1698398001~hmac=b57590b0078a82fa737745ff15484e7942ab435037e341e2f1c6a6f6798b20ef');">
-    
-    <header class="h-12 w-full text-center mx-auto mt-5 border-b-2 border-rose-800">
-        <h1 class="font-family text-3xl">CATALOGO DE PELICULAS</h1>
-    </header>
-    <main class="container mx-auto mt-5 p-4 text-center">
-
-        <div class="flex flex-wrap -m-2">
-            {% if movie_list %}
-            {% for movie in movie_list %}
-            <div class="movie-card p-2 w-1/3">
-                <p class="text-white font-semibold text-2xl">{{ movie.title }}</p>
-                <a href="/movies/{{ movie.id }}/">
-                    <img src="{% static 'movies/assets/img' %}{{ movie.poster_path }}" alt="{{ movie.title }} Poster"
-                        class="transform scale-100 hover:scale-105 transition-transform">
-                </a>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p class="text-red-500">No hay películas disponibles.</p>
-            {% endif %}
+<body style="background-image:url('https://img.freepik.com/foto-gratis/pared-textura-hormigon-azul-marino-solido_53876-124584.jpg?w=1060&t=st=1698397401~exp=1698398001~hmac=b57590b0078a82fa737745ff15484e7942ab435037e341e2f1c6a6f6798b20ef');">
+    <h1 class="text">CATALOGO DE PELICULAS</h1>
+    <div class="catalogo espacio">
+        {% if movie_list %}
+        {% for movie in movie_list %}
+        <div>
+            <h2 class="text text-center"> {{movie.title}}</h2>
+            <a href="/movies/{{ movie.id}}/">
+                <img src="{% static 'movies/assets/img' %}{{ movie.poster_path }}" alt="{{ movie.title }} Poster" class="imagen espacio tamaño">
+            </a>
         </div>
-    </main>
+        {% endfor %}
+        {% else %}
+        <p>No hay mas películas disponibles.</p>
+        {% endif %}
+    </div>
 </body>

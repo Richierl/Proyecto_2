@@ -68,10 +68,9 @@ background-image:url('https://img.freepik.com/foto-gratis/pared-textura-hormigon
         </div>
         </div>
     <div class="bottom-container">
-        <h2 class="text">Cast & Crew</h2>
+        <h2 class="text sin-salto">Cast & Crew</h2>
         {% for movie_credit in movie_credits %}
-        <br>
-        <p1 class="text">{{ movie_credit.person.name }}:</p1>
+        <p class ="text sin-salto"> {{movie_credit.person.name}}</p>
         <p1 class="text-bold"> {{ movie_credit.job.name }}</p1>
         {% endfor %}
 
