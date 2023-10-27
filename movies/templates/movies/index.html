@@ -8,16 +8,19 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
     <!--<link href="{% static 'movies/assets/css/tailwind-style.css' %}" rel="stylesheet">-->
     <title>Proyeto_2 MyMovies</title>
+    <style>
+        .fuente{
+            font-family: "Arial Black", sans-serif;
+        }
+    </style>
 </head>
 
 <body class="font-sans max-w-4xl mx-auto bg-stone-900 text-red-50 "
     style="
-    background-image:url('https://img.freepik.com/foto-gratis/telon-fondo-textura-muro-hormigon-solido_53876-129493.jpg?w=1060&t=st=1698297229~exp=1698297829~hmac=e16be0679c473f8f18cde39d9dfcec3d3cbaefb5a727323f0f54f938fead5dc8');">
+    background-image:url('https://img.freepik.com/foto-gratis/pared-textura-hormigon-azul-marino-solido_53876-124584.jpg?w=1060&t=st=1698397401~exp=1698398001~hmac=b57590b0078a82fa737745ff15484e7942ab435037e341e2f1c6a6f6798b20ef');">
     
     <header class="h-12 w-full text-center mx-auto mt-5 border-b-2 border-rose-800">
-
-        <h1 class="font-bold text-3xl text-white">CATALOGO DE PELICULAS</h1>
-
+        <h1 class="font-family text-3xl">CATALOGO DE PELICULAS</h1>
     </header>
     <main class="container mx-auto mt-5 p-4 text-center">
 
@@ -28,7 +31,7 @@
                 <p class="text-white font-semibold text-2xl">{{ movie.title }}</p>
                 <a href="/movies/{{ movie.id }}/">
                     <img src="{% static 'movies/assets/img' %}{{ movie.poster_path }}" alt="{{ movie.title }} Poster"
-                        class="transform scale-100 hover:scale-110 transition-transform">
+                        class="transform scale-100 hover:scale-105 transition-transform">
                 </a>
             </div>
             {% endfor %}

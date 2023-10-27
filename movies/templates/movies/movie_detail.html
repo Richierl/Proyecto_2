@@ -1,99 +1,80 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>{{movie.title}}</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="{% static '/movies/assets/css/output.css' %}"rel="stylesheet">
-    </head>
+<head>
+    <style>
+        .container {
+            width: 400%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+        }
+        .colum-left{
+            flex: 1;
+        }
+        .column-right {
+            flex: 1;
+            padding: 20px;
+        }
+        .bottom-container{
+            padding: 20px;
+            text-align: left;
+            width: 900px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .imagen{
+            width: 330px;
+            height: auto;
+        }
+        .sin-salto{
+            margin-bottom: 0;
+        }
+        .text{
+            color: white;
+            font-family: "Arial", sans-serif;
+        }
+        .text-bold{
+            color: white;
+            font-display: "Arial", sans-serif;
+        }
+    </style>
+</head>
 
-
-    <body class= "tracking-wider bg-contain"style="background-image:url('https://cdn.pixabay.com/photo/2015/06/22/22/41/texture-818125_960_720.png');"></body>
-  
-
-        <header>
-            <section class="w-[30%] max-w-md mx-auto place-content-center bg-amber-300 rounded-b-2xl rounded-t-2xl"><br>
-            <h1 class="font-medium text-4xl font-bold font-verdana text-center text-black">Las Chicas Super Poderosas</h1>
-            <br>
-            </section>
-        </header>
-
-        <section class="w-[90%] max-w-md mx-auto place-content-center">
-        <br>
-        <div class="bg-black rounded-b-xl rounded-t-xl text-white p-5 text-2xl">
-        <h1 class="text-center"> {{ movie.title }} </h1> 
-        <h1 class="text-center"> ({{ movie.release_date|date:"Y" }})</h1>   
+<body class="font-sans max-w-4xl mx-auto bg-stone-900 text-red-50 "
+style="
+background-image:url('https://img.freepik.com/foto-gratis/pared-textura-hormigon-azul-marino-solido_53876-124584.jpg?w=1060&t=st=1698397401~exp=1698398001~hmac=b57590b0078a82fa737745ff15484e7942ab435037e341e2f1c6a6f6798b20ef');">>
+    <div class="container">
+        <div class="column-left">
+                <img src="{% static 'movies/assets/img'|add:movie.poster_path %}" class="imagen" alt="">
+            <br> 
         </div>
-        <br>
-        </section>
-        
-        <section class="w-[70%] max-w-md mx-auto place-content-center">
-        <h1 class="text-center bg-white rounded-b-xl rounded-t-xl text-black p-5 text-2xl font-bold"> Duracion:</h1>
-        <br>
-        <h1 class="bg-black rounded-b-xl rounded-t-xl text-white p-5 text-xl text-center"> {{movie.running_time}} min</h1>
-        </section>
-        <br>
-        <br>
-
-
-        <section class="w-[90%] max-w-md mx-auto place-content-center">
-        <h1 class="text-center bg-white rounded-b-xl rounded-t-xl text-black p-5 text-2xl font-bold">
-         Genero(s):
-        </h1>
-        <br>
-        <h1 class="text-center bg-black rounded-b-xl rounded-t-xl text-white p-5">
-            {% for genre in movie.genres.all %}
-                <p class="px-1"> {{genre.name}}</p>
-                {% endfor %}  </h1>
-        </section>
-        
-        <br>
-
-        <section class="w-[90%] max-w-md mx-auto place-content-center bg-white rounded-b-xl rounded-t-xl text-black p-5">
-
-        <h1 class="text-center text-2xl font-bold"> Presupuesto: </h1>
-        <h1 class="text-center"> $ {{ movie.budget }} Unidades Monetarias</h1> <br>
-        <h1 class="text-center text-2xl font-bold"> Recaudacion: </h1>
-        <h1 class="text-center"> $ {{ movie.revenue }} Unidades Monetarias</h1>
-        </section>
-
-        <br>
-
-        <section class="w-[90%] max-w-md mx-auto place-content-center">
-            <div class="place-content-center"><img src="{% static 'movies/assets/img'|add:movie.poster_path %}" alt=""></div>
-        </section>
-        <br> 
-        
-        <h1 class="text-center"> {{SINOPSIS}} </h1>
-
-        <section class="w-[60%]  mx-auto place-content-center">
-        <div class="bg-black rounded-b-xl rounded-t-xl text-white p-5">
-            <p class="text-2xl text-justify">{{ movie.overview }} </p>
+        <div class="column-right">
+            <h1 class="text">{{ movie.title }} ({{ movie.release_date|date:"Y"}})</h1>
+            <h3 class="sin-salto text" >Genre {% for genre in movie.genres.all %}</h3>
+            <p1 class="sin-salto text">{{genre.name}}</p1>
+            {%if not forloop.last %}, {% endif %}
+            {% endfor %}
+            <h3 class="sin-salto text">Running Time</h3>
+            <p1 class="text">{{movie.running_time}} min</p1>
+            <h3 class="sin-salto text">Release Date</h3>
+            <p1 class="text">{{movie.release_date|date:""}} </p1>
+            <h3 class="sin-salto text">Overview</h3>
+            <p1 class="text">{{movie.overview}} </p1>
+            <h3 class="sin-salto text">Budget</h3>
+            <p1 class="text"> ${{movie.budget}} </p1>
+            <h3 class="sin-salto text">Revenue</h3>
+            <p1 class="text"> ${{movie.revenue}} </p1>
         </div>
-        </section>
-
-          <br>
-          <br>
-        
-        <section class="w-[90%] max-w-md mx-auto place-content-center bg-gray-200 rounded-b-xl rounded-t-xl text-black p-5 font-bold">
-        <h1 class="text-center text-4xl"> REPARTO </h1> <br>
-        <h1 class="text-center">
-        {% for credit in credits %}
-            <br><p class="font-bold"> Actor: {{ credit.person.name }}</p> 
-            <p>Trabajo: {{ credit.job.name }}</p>
-        {% endfor %} </h1>
-        </section>
-        
+        </div>
+    <div class="bottom-container">
+        <h2 class="text">Cast & Crew</h2>
+        {% for movie_credit in movie_credits %}
         <br>
-        <section class="w-[70%]  mx-auto place-content-center">
-        <footer class="text-5xl font-bold text-center">
-            <div class="bg-black rounded-b-xl rounded-t-xl text-3xl font-sm text-center text-white">
-            <p> Link Repositorio</p>
-            <p><a href="https://github.com/YuridiaSCH/TeamMovies"> TeamMovies</a></p>
-            </div>
-        </footer>
-        </section>
+        <p1 class="text">{{ movie_credit.person.name }}:</p1>
+        <p1 class="text-bold"> {{ movie_credit.job.name }}</p1>
+        {% endfor %}
 
-    </body>
+    </div>
+</body>
 </html>
